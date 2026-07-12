@@ -30,6 +30,9 @@ bool TradeAction::Execute(Event event)
             if (guid.IsPlayer())
                 player = ObjectAccessor::FindPlayer(guid);
 
+        if (!player && event.getOwner())
+            player = event.getOwner();
+
         if (!player && botAI->GetMaster())
             player = botAI->GetMaster();
 

@@ -250,7 +250,9 @@ bool JoinGroupAction::Execute(Event event)
     if (bot->InBattlegroundQueue())
         return false;
 
-    Player* master = event.getOwner();
+    Player* master = event.getOwner() ? event.getOwner() : botAI->GetMaster();
+    if (!master)
+        return false;
 
     Group* group = master->GetGroup();
 
